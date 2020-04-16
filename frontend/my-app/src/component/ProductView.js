@@ -1,6 +1,10 @@
 import React from 'react';
 import ProductBox from './ProductBox'
 
+class ProductImages extends React.Component{
+
+}
+
 export default class ProductView extends React.Component {
     constructor(props){
         super(props)
@@ -18,9 +22,7 @@ export default class ProductView extends React.Component {
     render(){
 
         return (
-            
-           
-
+ 
         <div>
             <img src={this.state.data.image}>
             </img>

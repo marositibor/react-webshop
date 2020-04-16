@@ -19,7 +19,7 @@ app.get('/products/:id', (req, res) =>{
 })
 
 app.get('/products', (req, res) =>{
-    db.all("SELECT * from product",(err,rows)=>{
+    db.all("SELECT rowId as id, name,shortSpecs,image,qty,url from product",(err,rows)=>{
         setTimeout(()=>{res.json(rows)},1000)
     })
 })
