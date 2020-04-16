@@ -1,8 +1,48 @@
 import React from 'react';
 import ProductBox from './ProductBox'
+import '../App.css';
 
 class ProductImages extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            activeImg: 0,
+            images: [this.props.image, this.props.image, this.props.image, this.props.image]
+        };
+        this.setActiveImage = this.setActiveImage.bind(this)
+      
+    }
 
+    ShowNextImage(nextImage){
+        this.setState({activeImg: nextImage})
+    }
+
+    setActiveImage(num){
+        this.setState({activeImg: num})
+    }
+
+    render() {
+        const {activeImg, images} = this.state;
+        const activeSrc = images[activeImg];
+        return(
+            <div>
+                <div>
+                    <img src={activeSrc}></img>
+                </div>
+                <div>
+                    <button>Prev</button>
+                    {images.map((src, i) => (
+                        <div key={i} onClick={() => this.setActiveImage(i)}>
+                            <img src={src} />
+                        </div>
+                    ))}
+                    <button onClick={this.ShowNextImage}>Next</button>
+                </div>
+            </div>
+           
+
+        )
+    }
 }
 
 export default class ProductView extends React.Component {
@@ -24,10 +64,28 @@ export default class ProductView extends React.Component {
         return (
  
         <div>
-            <img src={this.state.data.image}>
-            </img>
-            {this.state.data.name}
-            {this.state.data.shortSpecs}
+            <div className='Inline-block'>
+                <ProductImages img={this.state.data.image}/>
+                <div>
+                     Product name: {this.state.data.name} 
+                    <button>Add to cart</button>
+                </div>
+                <div>
+                    Price: EUR 100000 
+                </div>
+                <div>
+                    {this.state.data.shortSpecs}
+                </div>
+
+            </div>
+            <div>
+                {this.state.data.shortSpecs}
+            </div>
+            <div>
+                Recommended products
+            </div>
+            
+            
          
         </div>
     

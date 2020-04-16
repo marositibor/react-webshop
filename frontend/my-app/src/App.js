@@ -15,10 +15,10 @@ import ProductView from './component/ProductView';
 export default class App extends React.Component {
   render() {
     return (<BrowserRouter>
-      <div>
-        <div>
+      <div className='App'>
+        <div className='App-header'>
           <p>Webshop</p>
-          <nav>
+          <nav >
             <ul>
               <li>
                 <Link to="/">Home</Link>
