@@ -6,8 +6,8 @@ class ProductImages extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            activeImg: 0,
-            images: [this.props.image, this.props.image, this.props.image, this.props.image]
+            activeImg: 1,
+            images:[1,2,3,4]
         };
         this.setActiveImage = this.setActiveImage.bind(this)
       
@@ -27,13 +27,13 @@ class ProductImages extends React.Component{
         return(
             <div>
                 <div>
-                    <img src={activeSrc}></img>
+                    <img style={{width: '50%'}} src={this.props.imgUrl+`/${this.state.activeImg}.jpg`}></img>
                 </div>
                 <div>
                     <button>Prev</button>
                     {images.map((src, i) => (
-                        <div key={i} onClick={() => this.setActiveImage(i)}>
-                            <img src={src} />
+                        <div key={i} onClick={() => this.setActiveImage(i+1)}>
+                            <img style={{width: '25%'}} src={this.props.imgUrl+`/${i+1}.jpg`} />
                         </div>
                     ))}
                     <button onClick={this.ShowNextImage}>Next</button>
@@ -44,6 +44,9 @@ class ProductImages extends React.Component{
         )
     }
 }
+
+
+
 
 export default class ProductView extends React.Component {
     constructor(props){
@@ -65,7 +68,7 @@ export default class ProductView extends React.Component {
  
         <div>
             <div className='Inline-block'>
-                <ProductImages img={this.state.data.image}/>
+                <ProductImages imgUrl={this.state.data.image}/>
                 <div>
                      Product name: {this.state.data.name} 
                     <button>Add to cart</button>

@@ -11,7 +11,7 @@ export default class ProductBox extends React.Component {
     render(){
         return(
             <div>
-                <img style={{width: '100px'}} src={this.props.data.image}>
+                <img style={{height: '100px'}} src={this.props.data.image+"/1.jpg"}>
                 </img>
                 {this.props.data.name}
                 {this.props.data.shortSpecs}
