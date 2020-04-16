@@ -1,12 +1,25 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "nodejs backend for react-blog",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marositibor/react-webshop/.git"
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marositibor/react-webshop/issues"
+  },
+  "homepage": "https://github.com/marositibor/react-webshop/#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "sqlite3": "^4.1.1"
+  }
 }
