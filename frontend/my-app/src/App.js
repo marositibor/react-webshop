@@ -1,26 +1,53 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Products from './component/Products';
+// import AboutPage from './01components/AboutPage';
+// import BlogPosts from './01components/BlogPosts';
+// import OnePost from './01components/OnePost';
+export default class App extends React.Component {
+  render() {
+    return (<BrowserRouter>
+      <div>
+        <div>
+          <p>Webshop</p>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/products">Products</Link>
+              </li>
+              <li>
+                <Link to="/orders">Orders</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div>
+          Shopping Cart
+        </div>
+        {/* A <Switch> looks through its children <Route>s and
+          renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/products">
+            <Products />
+          </Route>
+          <Route path="/product/:id" />
+          <Route path="/products">
+            {/* <BlogPosts /> */}
+          </Route>
+          <Route path="/">
+            {/* s<HomePage /> */}
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>)
+  }
 }
-
-export default App;
