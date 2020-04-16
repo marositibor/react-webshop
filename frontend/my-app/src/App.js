@@ -7,6 +7,8 @@ import {
   Link
 } from "react-router-dom";
 import Products from './component/Products';
+import ProductView from './component/ProductView';
+
 // import AboutPage from './01components/AboutPage';
 // import BlogPosts from './01components/BlogPosts';
 // import OnePost from './01components/OnePost';
@@ -39,7 +41,8 @@ export default class App extends React.Component {
           <Route path="/products">
             <Products />
           </Route>
-          <Route path="/product/:id" />
+          <Route path="/product/:id" component={ProductView}/>
+
           <Route path="/products">
             {/* <BlogPosts /> */}
           </Route>

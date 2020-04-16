@@ -1,19 +1,26 @@
 import React from 'react';
 import ProductBox from './ProductBox'
 
-const data =  {
-    "name": "Cipofuzo",
-    "shortSpecs": "30 cm rozsaszin",
-    "image": "http://localhost:3050/img/shoelaces.jpg",
-    "qty": 10,
-    "url": "http://localhost:3050/products/1"
-  }
-
 export default class Products extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            data : []
+        }
+    }
+
+    async componentDidMount(){
+        const response = await fetch('http://localhost:3050/products');
+        const data = await response.json();
+        this.setState({data: await data})
+    }
 
     render(){
+
         return (
-            <ProductBox data={data}/>
+            this.state.data.map((singleData, key)=> {
+                return <ProductBox data={singleData} key={key}/>
+            })
  
         )
     }
