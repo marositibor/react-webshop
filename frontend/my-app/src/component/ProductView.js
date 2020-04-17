@@ -1,72 +1,27 @@
 import React from 'react';
-import ProductBox from './ProductBox'
+import ProductImages from './ProductImages'
 import '../App.css';
-
-class ProductImages extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            activeImg: 1,
-            images:[1,2,3,4]
-        };
-        this.setActiveImage = this.setActiveImage.bind(this)
-      
-    }
-
-    ShowNextImage(nextImage){
-        this.setState({activeImg: nextImage})
-    }
-
-    setActiveImage(num){
-        this.setState({activeImg: num})
-    }
-
-    render() {
-        const {activeImg, images} = this.state;
-        const activeSrc = images[activeImg];
-        return(
-            <div>
-                <div>
-                    <img style={{width: '50%'}} src={this.props.imgUrl+`/${this.state.activeImg}.jpg`}></img>
-                </div>
-                <div>
-                    <button>Prev</button>
-                    {images.map((src, i) => (
-                        <div key={i} onClick={() => this.setActiveImage(i+1)}>
-                            <img style={{width: '25%'}} src={this.props.imgUrl+`/${i+1}.jpg`} />
-                        </div>
-                    ))}
-                    <button onClick={this.ShowNextImage}>Next</button>
-                </div>
-            </div>
-           
-
-        )
-    }
-}
-
-
-
 
 export default class ProductView extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            data : {}
+            data : {},
+            dataLoaded: false
         }
     }
 
     async componentDidMount(){
         const response = await fetch('http://localhost:3050/products/'+this.props.match.params.id);
         const data = await response.json();
-        this.setState({data: await data})
+        this.setState({data:  data,dataLoaded: true})
     }
 
     render(){
-
+        if(this.state.dataLoaded)
+        {const specs = this.state.data.specs;
         return (
- 
-        <div>
+           
             <div className='Inline-block'>
                 <ProductImages imgUrl={this.state.data.image}/>
                 <div>
@@ -74,25 +29,28 @@ export default class ProductView extends React.Component {
                     <button>Add to cart</button>
                 </div>
                 <div>
+                    {this.state.data.qty}
                     Price: EUR 100000 
                 </div>
                 <div>
-                    {this.state.data.shortSpecs}
+                    {this.state.data.qty ? "in stock" : "out of stock"}
                 </div>
-
-            </div>
-            <div>
-                {this.state.data.shortSpecs}
-            </div>
+                <div>
+                    <table>
+                        <tbody>
+                    {Object.keys(specs).map((keyName,keyIndex)=>{
+                        return <tr key={keyIndex}><td>{keyName}</td><td>{specs[keyName]}</td></tr>
+                    })}
+                    </tbody>
+                    </table>
+                </div>
             <div>
                 Recommended products
             </div>
-            
-            
-         
-        </div>
+            </div>
     
-       )
+       )}
+       return <div/>
     }
 
 }
