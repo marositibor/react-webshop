@@ -1,0 +1,25 @@
+:root{
+  --primary-color: #00e676;
+  --primary-light: #66ffa6;
+  --primary-dark: #00b248;
+  --secondary-dark: #c30000;
+  --background-light: #F5F5F6;
+  --background-darker: #E1E2E1;
+  --background-dark: rgb(209, 211, 209);
+  
+  font-family: sans-serif;
+}
+
+body{
+  background-color: var(--background-light);
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/*https://material.io/resources/color/#!/?view.left=0&view.right=0&secondary.color=ff4100&primary.color=00E676&primary.text.color=000000*/
