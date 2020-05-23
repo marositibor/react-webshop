@@ -28,6 +28,12 @@ export default class App extends React.Component {
                     fontWeight: 'bold',
                   }}
                   >Products</NavLink>
+
+                  <NavLink to="/upload-product"
+                  activeStyle={{
+                    fontWeight: 'bold',
+                  }}
+                  >Upload Product</NavLink>
           </div>
           <div>Header</div>
         </div>

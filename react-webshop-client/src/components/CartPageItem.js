@@ -24,7 +24,7 @@ class CartPageItem extends Component {
       <div className="cartpageitem">
         <img
           className="cartpageitem-image"
-          src={this.props.primary_image}
+          src={process.env.REACT_APP_BACKEND_URL+'/'+this.props.primary_image}
           alt="Product"
         ></img>
         <div className="cartpageitem-name"><Link style={{ textDecoration: 'none',color: 'black' }} to={`/product/${this.props.sku}`}>{this.props.name}</Link></div>

@@ -16,18 +16,25 @@ import {
 import { connect } from "react-redux";
 
 
-
+function mapStateToProps(state){
+  const {products} = state;
+  return {products}
+}
 
 
 class App extends React.Component{
-  async componentDidMount(){
-    
-    const response = await fetch(process.env.REACT_APP_BACKEND_URL+'/products')
-    const products = await response.json()
-    this.props.fetchProducts(products)
 
+  constructor(props){
+    super(props)
+    fetch(process.env.REACT_APP_BACKEND_URL+'/products').then(resp=>resp.json()).then(products=>this.props.fetchProducts(products)) 
   }
-  render() {return (
+
+  render() {
+    
+    if(this.props.products.length === 0){
+      return (<></>)
+    }
+    return (
     <Router>
       <header><Header/></header>
       <main>
@@ -47,4 +54,4 @@ class App extends React.Component{
   );}
 }
 
-export default connect(null,{fetchProducts})(App)
+export default connect(mapStateToProps,{fetchProducts})(App)

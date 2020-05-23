@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import UpdateProductForm from './UpdateProductForm';
 import ImageTable from './ImageTable';
 import DeleteProductModal from './DeleteProductModal';
+import RecommendedProducts from './RecommendedProducts';
 
 
 export default class UpdateProductView extends Component {
@@ -31,6 +32,7 @@ export default class UpdateProductView extends Component {
       <div>
         <UpdateProductForm sku={sku} />
         <ImageTable sku={sku} />
+        <RecommendedProducts sku={sku}/>
         <DeleteProductModal sku={sku} isActive={this.state.modalActive} handleCancel={this.handleCancel}/>
         <button onClick={this.handleDelete.bind(this)}>Delete Product</button>
       </div>

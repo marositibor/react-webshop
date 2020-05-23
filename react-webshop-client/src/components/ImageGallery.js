@@ -59,7 +59,7 @@ export default class ImageGallery extends React.Component {
     return (
       <div className="ImageGallery">
         <div className="main-image">
-          <img src={this.state.mainImage} alt="" />
+          <img src={process.env.REACT_APP_BACKEND_URL+'/'+this.state.mainImage} alt="" />
         </div>
         <div className="image-roll">
           {this.state.images.length > 3 && (
@@ -71,7 +71,7 @@ export default class ImageGallery extends React.Component {
               key={i}
               onClick={() => this.setMainImage(i)}
             >
-              <img src={src} alt="" />
+              <img src={process.env.REACT_APP_BACKEND_URL+'/'+src} alt="" />
             </div>
           ))}
           {this.state.images.length > 3 && (
